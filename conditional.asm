@@ -9,8 +9,31 @@
 .text
 main:
 
-	# TODO: Write your code here
+	li $v0, 5
+	syscall
+	move $s0, $v0
+
+	andi $t0, $s0, 3
+
+	bne $t0, $zero, multSeven
+multFour:
+	li $t1, 4
+	mult $t1, $s0
+	j print
+
+multSeven:
+	li $t1, 7
+	mult $t1, $s0
+
+print:
+	mflo $t0
+	li $v0, 1
+	move $a0, $t0
+	syscall
+
 
 exit:
+	li $v0, 10
+	syscall
 	# Exit SPIM: Write your code here!
 
